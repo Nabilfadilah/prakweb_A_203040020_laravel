@@ -2,6 +2,6 @@
 
 @section('container')
     
-    <h1>Hello, world!</h1>
+    <h1>Halaman Home</h1>
 
 @endsection
