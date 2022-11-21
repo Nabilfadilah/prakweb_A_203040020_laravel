@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
 use App\Http\Controllers\DashboardPostController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Route::get('/about', function () {
 });
 
 
-Route::get('/blog', [PostController::class, 'index']); // index = method
+Route::get('/posts', [PostController::class, 'index']); // index = method
 
 // halaman single
 Route::get('posts/{post:slug}', [PostController::class, 'show']); // show = method
@@ -67,6 +68,9 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
+
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])
+    ->middleware('auth');
 
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
